@@ -66,9 +66,10 @@ function App() {
         <Sp500Chart />
         <footer className="sp5-footer">
           <p className="sp5-muted">
-            To refresh the chart data or transcript, run <code>npm run data</code>, copy a new
-            export to <code>public/chat-transcript.jsonl</code>, then <code>npm run build</code> and
-            deploy.
+            To refresh: <code>npm run data</code> for prices; <code>npm run transcript</code> copies
+            this Cursor chat from your machine into <code>public/chat-transcript.jsonl</code> (set{' '}
+            <code>CURSOR_TRANSCRIPT</code> if the file lives elsewhere). Then <code>npm run build</code>{' '}
+            and deploy.
           </p>
         </footer>
       </section>

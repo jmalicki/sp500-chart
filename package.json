@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "data": "node scripts/fetch-gspc.mjs",
-    "dev": "npm run data && vite",
-    "build": "npm run data && tsc -b && vite build",
+    "transcript": "node scripts/sync-transcript.mjs",
+    "dev": "npm run transcript && npm run data && vite",
+    "build": "npm run data && npm run transcript && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

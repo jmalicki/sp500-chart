@@ -26,7 +26,9 @@ export function ChatTranscript() {
     let cancelled = false
     ;(async () => {
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}chat-transcript.jsonl`)
+        const res = await fetch(`${import.meta.env.BASE_URL}chat-transcript.jsonl`, {
+          cache: 'no-store',
+        })
         if (!res.ok) throw new Error(`${res.status}`)
         const text = await res.text()
         const parsed: TranscriptRow[] = []
@@ -69,8 +71,11 @@ export function ChatTranscript() {
           <div className="sp5-transcript__body">
             {(row.message?.content ?? []).map((part, j) => {
               if (part.type === 'text' && typeof part.text === 'string') {
-                const body =
+                let body =
                   row.role === 'user' ? extractUserPlainText(part.text) : part.text
+                if (row.role === 'user' && !body.trim()) {
+                  body = '(Image / attachment hand-off — see step 1 for the sketch.)'
+                }
                 if (!body.trim()) return null
                 return (
                   <pre key={j} className="sp5-transcript__text">
